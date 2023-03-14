@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HomeFragment">
+    tools:context=".fragments.HomeFragment">
 
         <LinearLayout
             android:id="@+id/llHeader"
@@ -17,7 +17,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             >
-
                 <TextView
                     android:id="@+id/tvHome"
                     android:layout_weight="3"
@@ -28,10 +27,9 @@
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_gravity="center"
                     android:textColor="#FFFFFF"
-
-                    android:textSize="@dimen/_20ssp"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_23ssp"
                     />
-
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
