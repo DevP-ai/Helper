@@ -1,4 +1,4 @@
-package com.example.bottomnavigation.activity
+package com.example.bottomnavigation.client.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,11 +7,10 @@ import androidx.navigation.ui.NavigationUI
 import com.example.bottomnavigation.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity() {
+class ClientMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         // Here in the xml file you should use <fragment> then only it will work otherwise app will crash
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.btmNav)

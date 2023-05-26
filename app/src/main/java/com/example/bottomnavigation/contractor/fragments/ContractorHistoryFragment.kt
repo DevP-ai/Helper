@@ -1,7 +1,7 @@
-package com.example.bottomnavigation.fragments
+package com.example.bottomnavigation.contractor.fragments
 
 import android.os.Bundle
-
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,10 +14,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ChatFragment.newInstance] factory method to
+ * Use the [ContractorHistoryFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ChatFragment : androidx.fragment.app.Fragment() {
+class ContractorHistoryFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -35,7 +35,7 @@ class ChatFragment : androidx.fragment.app.Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat, container, false)
+        return inflater.inflate(R.layout.fragment_contractor_history, container, false)
     }
 
     companion object {
@@ -45,12 +45,12 @@ class ChatFragment : androidx.fragment.app.Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ChatFragment.
+         * @return A new instance of fragment ContractorHistoryFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ChatFragment().apply {
+            ContractorHistoryFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
