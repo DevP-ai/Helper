@@ -23,6 +23,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,6 +38,8 @@ class PostFragment : Fragment() {
     private lateinit var imageViews: Array<ImageView>
 
     private var imageUris: MutableList<Uri> = mutableListOf()
+
+
     private val selectImages =
         registerForActivityResult(ActivityResultContracts.GetMultipleContents()) { uris ->
             imageUris.clear()
@@ -42,13 +48,16 @@ class PostFragment : Fragment() {
         }
 
     private fun updateImageViews() {
-        for (i in 0 until 4) imageViews[i].setImageURI(null)
-        for (i in imageUris.indices) {
-            if (i >= 4) break // Limit to 4 images
-            imageViews[i].setImageURI(imageUris[i])
+        for (i in 0 until 4) {
+            if (i < imageUris.size) {
+                imageViews[i].setImageURI(imageUris[i])
+                showCutButton(i)
+            } else {
+                imageViews[i].setImageURI(null)
+                hideCutButton(i)
+            }
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -56,14 +65,53 @@ class PostFragment : Fragment() {
 
         initializations()
         applyingCornerRadiusToImageViews()
+        binding.btnCut1.visibility = View.GONE
+        binding.btnCut2.visibility = View.GONE
+        binding.btnCut3.visibility = View.GONE
+        binding.btnCut4.visibility = View.GONE
         binding.apply {
-            btnPickImages.setOnClickListener { selectImages.launch("image/*") }
+            btnPickImages.setOnClickListener {
+                selectImages.launch("image/*")
+            }
             btnPost.setOnClickListener { uploadImagesToFirebaseStorage() }
+            btnCut1.setOnClickListener {
+                imageViews[0].setImageResource(R.drawable.ic_baseline_image_24)
+                btnCut1.visibility = View.GONE
+            }
+            btnCut2.setOnClickListener {
+                imageViews[1].setImageResource(R.drawable.ic_baseline_image_24)
+                btnCut2.visibility = View.GONE
+            }
+            btnCut3.setOnClickListener {
+                imageViews[2].setImageResource(R.drawable.ic_baseline_image_24)
+                btnCut3.visibility = View.GONE
+            }
+            btnCut4.setOnClickListener {
+                imageViews[3].setImageResource(R.drawable.ic_baseline_image_24)
+                btnCut4.visibility = View.GONE
+            }
         }
+
 
         return binding.root
     }
+    private fun showCutButton(index: Int) {
+        when (index) {
+            0 -> binding.btnCut1.visibility = View.VISIBLE
+            1 -> binding.btnCut2.visibility = View.VISIBLE
+            2 -> binding.btnCut3.visibility = View.VISIBLE
+            3 -> binding.btnCut4.visibility = View.VISIBLE
+        }
+    }
 
+    private fun hideCutButton(index: Int) {
+        when (index) {
+            0 -> binding.btnCut1.visibility = View.GONE
+            1 -> binding.btnCut2.visibility = View.GONE
+            2 -> binding.btnCut3.visibility = View.GONE
+            3 -> binding.btnCut4.visibility = View.GONE
+        }
+    }
     private fun applyingCornerRadiusToImageViews() {
         binding.apply {
             ivPic1.clipToOutline = true
@@ -80,11 +128,13 @@ class PostFragment : Fragment() {
 
     private fun postingNeed(uploadedImages: MutableList<String>) {
         Log.d("hh", uploadedImages.toString())
-        val firstName = binding.tvIFirstName.text.toString()
+        val needType = binding.tvIFirstName.text.toString()
+        val budget  = binding.tvBudget.text.toString()
+        val size = binding.tvSize.text.toString()
         val state = binding.tvState.text.toString()
         val city = binding.tvCity.text.toString()
         val address = "$city, ($state)"
-        val name = firstName.trim()
+        val name = needType.trim()
         val description = binding.tvDescription.text.toString()
         val currentUserId = firebaseAuth.currentUser?.uid
         val currentDate: String = SimpleDateFormat(
@@ -92,10 +142,8 @@ class PostFragment : Fragment() {
         ).format(Date())  //here dont keep date as dd/MM/yyyy ow firebase will break the date while storing
         val currentTime: String = SimpleDateFormat("HH:mm a", Locale.getDefault()).format(Date())
         databaseReference = FirebaseDatabase.getInstance().getReference("All Posts")
-        val clientDetail = ClientPosts(
-            currentUserId!!, name, address, description, "$currentDate($currentTime)", uploadedImages
-        )
-        if (firstName.isNotEmpty() && state.isNotEmpty() && city.isNotEmpty() && description.isNotEmpty() && description.isNotEmpty()) {
+        val clientDetail = ClientPosts(currentUserId!!, name,budget,size, address, description, "$currentDate($currentTime)", uploadedImages)
+        if (needType.isNotEmpty() && state.isNotEmpty() && city.isNotEmpty() && description.isNotEmpty() && description.isNotEmpty()) {
             databaseReference.push().setValue(clientDetail).addOnSuccessListener {
                 binding.tvIFirstName.text?.clear()
                 binding.tvState.text?.clear()

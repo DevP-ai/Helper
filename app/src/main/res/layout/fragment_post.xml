@@ -23,7 +23,8 @@
         app:layout_constraintTop_toBottomOf="@id/postToolbar"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_20sdp"
+        app:layout_constraintEnd_toEndOf="parent"
         android:letterSpacing="0.03"
         android:text="@string/post_your_need"
         android:textSize="@dimen/_15sdp"
@@ -31,38 +32,21 @@
         android:textColor="@color/HardGreen"
         />
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:overScrollMode="never"
-        android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/_10sdp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvWelcomeClient"
-        app:layout_constraintVertical_bias="0.0">
+
 
         <LinearLayout
             android:id="@+id/llDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:text="@string/name"
-                android:textColor="@color/HardGreen"
-                android:textSize="@dimen/_18ssp"
-                android:textStyle="bold" />
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/tvWelcomeClient"
+            >
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:orientation="vertical">
                 <!--                First name-->
@@ -74,10 +58,12 @@
                     android:clickable="true"
                     android:focusable="true"
                     app:boxStrokeColor="@color/HardGreen"
-                    android:hint="@string/full_name_required"
+                    app:hintTextAppearance="@style/HintTextAppearance"
+                    android:hint="Enter need type(ex. Electronics, Furniture)*"
                     android:touchscreenBlocksFocus="false"
                     app:endIconMode="clear_text"
                     app:endIconTint="@color/HardGreen"
+                    android:layout_marginEnd="@dimen/_5sdp"
                     app:hintAnimationEnabled="true"
                     app:hintTextColor="@color/HardGreen">
                     <com.google.android.material.textfield.TextInputEditText
@@ -86,15 +72,58 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/text_fields_bkg" />
                 </com.google.android.material.textfield.TextInputLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:text="@string/address"
-                    android:textColor="@color/HardGreen"
-                    android:textSize="@dimen/_18ssp"
-                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_weight="0.5"
+                        android:focusable="true"
+                        android:focusableInTouchMode="false"
+                        android:hint="Budget*"
+                        android:touchscreenBlocksFocus="false"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/HardGreen"
+                        app:hintAnimationEnabled="true"
+                        app:hintTextColor="@color/HardGreen">
 
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tvBudget"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/text_fields_bkg" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_weight="0.5"
+                        android:focusable="true"
+                        android:focusableInTouchMode="false"
+
+                        android:hint="Size/Dimension"
+                        android:touchscreenBlocksFocus="false"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/HardGreen"
+                        app:hintAnimationEnabled="true"
+                        app:hintTextColor="@color/HardGreen">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tvSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/text_fields_bkg" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -147,14 +176,7 @@
                             android:background="@drawable/text_fields_bkg" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_1sdp"
-                    android:text="@string/description_of_your_requirements"
-                    android:textColor="@color/HardGreen"
-                    android:textSize="@dimen/_18ssp"
-                    android:textStyle="bold" />
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -171,7 +193,6 @@
                     app:endIconTint="@color/HardGreen"
                     app:hintAnimationEnabled="true"
                     app:hintTextColor="@color/HardGreen">
-
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tvDescription"
                         android:layout_width="match_parent"
@@ -179,70 +200,151 @@
                         android:background="@drawable/text_fields_bkg"
                         android:gravity="top" />
                 </com.google.android.material.textfield.TextInputLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_1sdp"
-                    android:text="@string/please_provide_some_images"
-                    android:textColor="@color/HardGreen"
-                    android:textSize="@dimen/_18ssp"
-                    android:textStyle="bold" />
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/_50sdp"
                     android:orientation="horizontal"
-                    android:weightSum="5"
-                    >
-                    <ImageView
-                        android:id="@+id/ivPic1"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:src="@drawable/img"
-                        android:layout_weight="1"
-                        android:scaleType="fitCenter"
-                        android:background="@drawable/image_back"
-                        />
-                    <ImageView
-                        android:id="@+id/ivPic2"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:src="@drawable/img"
-                        android:layout_weight="1"
-                        android:scaleType="fitCenter"
-                        android:background="@drawable/image_back"
-                        android:layout_marginStart="@dimen/_2sdp"
-                        android:layout_marginEnd="@dimen/_2sdp"
-                        />
-                    <ImageView
-                        android:id="@+id/ivPic3"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:src="@drawable/img"
-                        android:layout_weight="1"
-                        android:scaleType="fitCenter"
-                        android:background="@drawable/image_back"
-                        />
-                    <ImageView
-                        android:id="@+id/ivPic4"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:src="@drawable/img"
-                        android:layout_weight="1"
-                        android:scaleType="fitCenter"
-                        android:background="@drawable/image_back"
-                        android:layout_marginStart="@dimen/_2sdp"
-                        android:layout_marginEnd="@dimen/_2sdp"
-                        />
+                    android:weightSum="5">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/ivPic1"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:scaleType="fitCenter"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:src="@drawable/ic_baseline_image_24"
+                            android:background="@drawable/image_back" />
+
+                        <ImageButton
+                            android:id="@+id/btnCut1"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:src="@drawable/ic_baseline_close_24"
+                            app:layout_constraintEnd_toEndOf="@id/ivPic1"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginEnd="@dimen/_2sdp"
+                            android:background="@drawable/close_button_back"
+                            android:padding="8dp" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/ivPic2"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:scaleType="fitCenter"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:src="@drawable/ic_baseline_image_24"
+                            android:background="@drawable/image_back" />
+
+                        <ImageButton
+                            android:id="@+id/btnCut2"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:src="@drawable/ic_baseline_close_24"
+                            app:layout_constraintEnd_toEndOf="@id/ivPic2"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginEnd="@dimen/_2sdp"
+                            android:background="@drawable/close_button_back"
+                            android:padding="8dp" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/ivPic3"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:scaleType="fitCenter"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:src="@drawable/ic_baseline_image_24"
+                            android:background="@drawable/image_back" />
+
+                        <ImageButton
+                            android:id="@+id/btnCut3"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:src="@drawable/ic_baseline_close_24"
+                            app:layout_constraintEnd_toEndOf="@id/ivPic3"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginEnd="@dimen/_2sdp"
+                            android:background="@drawable/close_button_back"
+                            android:padding="8dp" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/ivPic4"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:scaleType="fitCenter"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:src="@drawable/ic_baseline_image_24"
+                            android:background="@drawable/image_back" />
+
+                        <ImageButton
+                            android:id="@+id/btnCut4"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:src="@drawable/ic_baseline_close_24"
+                            app:layout_constraintEnd_toEndOf="@id/ivPic4"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginEnd="@dimen/_2sdp"
+                            android:background="@drawable/close_button_back"
+                            android:padding="8dp" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                     <Button
                         android:id="@+id/btnPickImages"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/_30sdp"
                         android:layout_height="wrap_content"
                         android:text="@string/select"
                         android:textAllCaps="false"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/_5sdp" />
 
-                        />
                 </LinearLayout>
+
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnPost"
                     android:layout_width="match_parent"
@@ -258,5 +360,4 @@
                 </com.google.android.material.button.MaterialButton>
             </LinearLayout>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

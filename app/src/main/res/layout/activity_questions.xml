@@ -158,36 +158,30 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/text_fields_bkg" />
         </com.google.android.material.textfield.TextInputLayout>
-        <TextView
-            android:id="@+id/ques5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Question 5:"
-            android:textColor="@color/HardGreen"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:textSize="@dimen/_15ssp"
-            android:textStyle="bold" />
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:focusableInTouchMode="true"
-            android:clickable="true"
-            android:focusable="true"
-            app:boxStrokeColor="@color/HardGreen"
-            android:hint="Answer"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:touchscreenBlocksFocus="false"
-            app:endIconMode="clear_text"
-            app:endIconTint="@color/HardGreen"
-            app:hintAnimationEnabled="true"
-            app:hintTextColor="@color/HardGreen">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tvAnswer5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/text_fields_bkg" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            >
+            <ImageView
+                android:id="@+id/ivQuotationImageView"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:src="@drawable/ic_baseline_image_24"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                />
+            <ImageView
+                android:id="@+id/ivSelectFile"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_baseline_attachment_24"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
