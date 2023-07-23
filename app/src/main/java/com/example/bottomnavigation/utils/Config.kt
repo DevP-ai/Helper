@@ -17,7 +17,25 @@ object Config {
     fun hideDialog(){
         dialog?.dismiss()
     }
+    const val POST_STATUS_AVAILABLE="AVAILABLE"
+    const val POST_STATUS_SOLD="SOLD"
 
-
-
+    val categories = arrayOf(
+        "All",
+        "Bricks",
+        "Steels Bars",
+        "Cement",
+        "Electrician",
+        "Furniture",
+        "Mechanic"
+    )
+    val categoriesImages = arrayOf(
+        R.drawable.categories_all,
+        R.drawable.bricks,
+        R.drawable.steel_bars,
+        R.drawable.cement,
+        R.drawable.electronicsss,
+        R.drawable.furniture,
+        R.drawable.mechanic
+    )
 }

@@ -4,27 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".contractor.fragments.ContractorHomeFragment">
+    tools:context=".client.fragments.ContractorsFragment">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/contractorHomeToolbar"
+        android:id="@+id/contractorsToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/HardGreen"
+        app:title="Contractors"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@color/white"
-        app:title="Home"
         />
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/searchCv"
         android:backgroundTint="@color/lightGreen"
         android:layout_width="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/contractorHomeToolbar"
+        app:layout_constraintTop_toBottomOf="@id/contractorsToolBar"
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp"
         app:cardUseCompatPadding="true">
@@ -36,40 +35,16 @@
             android:drawableStart="@drawable/ic_baseline_search_24"
             android:drawablePadding="10dp"
             android:padding="10dp"
-            android:hint="Search"/>
+            android:hint="Search Contractors"/>
     </com.google.android.material.card.MaterialCardView>
 
-    <TextView
-        android:id="@+id/browsCategories"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/searchCv"
-        app:layout_constraintBottom_toTopOf="@id/rvCategories"
-        android:text="Brows Categories"
-        android:layout_margin="@dimen/_5sdp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rvCategories"
-        android:orientation="horizontal"
-        tools:listitem="@layout/row_categories_images"
-        app:layout_constraintTop_toBottomOf="@id/browsCategories"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvContractorPost"
+        android:id="@+id/rvContractors"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/rvCategories"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-/>
+        app:layout_constraintTop_toBottomOf="@id/searchCv"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
